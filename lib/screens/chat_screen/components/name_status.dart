@@ -23,7 +23,7 @@ class NameActivity extends StatelessWidget {
             name,
             textAlign: TextAlign.left,
             style: GoogleFonts.lato(
-              fontSize: Theme.of(context).textTheme.headline6!.fontSize,
+              fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -44,7 +44,7 @@ class NameActivity extends StatelessWidget {
                 lastActive,
                 textAlign: TextAlign.left,
                 defaultStyle: GoogleFonts.lato(
-                  fontSize: Theme.of(context).textTheme.bodyText1!.fontSize,
+                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                   fontWeight: FontWeight.w400,
                   color: Colors.black.withOpacity(.6),
                 ),

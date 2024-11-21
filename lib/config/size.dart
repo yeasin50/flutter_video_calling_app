@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+@Deprecated("Will be remove soon, use LayoutBuild or flexible widget to handle layout view")
 class SizeConfig {
   static late MediaQueryData _mediaQueryData;
   static late double screenWidth;
@@ -10,12 +12,13 @@ class SizeConfig {
   static late double subtitle1;
 
   void init(BuildContext context) {
+    //TODO: remove this 
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
     orientation = _mediaQueryData.orientation;
-    bodyText1 = Theme.of(context).textTheme.bodyText1!.fontSize!;
-    subtitle1 =  Theme.of(context).textTheme.subtitle1!.fontSize!;
+    bodyText1 = Theme.of(context).textTheme.bodyMedium!.fontSize!;
+    subtitle1 =  Theme.of(context).textTheme.bodySmall!.fontSize!;
   }
 }
 

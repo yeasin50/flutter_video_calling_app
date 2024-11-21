@@ -1,13 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:web_rtc/components/utils.dart';
-import 'package:web_rtc/config/size.dart';
-import 'package:web_rtc/provider/call_duration.dart';
-import 'package:web_rtc/screens/conversationsScreen/components/custom_logo.dart';
 
+import '../../provider/call_duration.dart';
+import '../conversationsScreen/components/custom_logo.dart';
 import 'components_/action_buttons.dart';
 
 class AudioCallBody extends StatefulWidget {
@@ -54,7 +50,7 @@ class _AudioCallBodyState extends State<AudioCallBody> {
                 Text(
                   _receiverName,
                   style: GoogleFonts.adamina(
-                    fontSize: Theme.of(context).textTheme.headline5!.fontSize,
+                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                   ),
                 ),
                 SizedBox(
@@ -86,7 +82,7 @@ class _AudioCallBodyState extends State<AudioCallBody> {
           value.strDuration,
           style: GoogleFonts.lateef(
             color: Colors.white.withOpacity(.9),
-            fontSize: Theme.of(context).textTheme.headline5!.fontSize,
+            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
             letterSpacing: 2,
             // height: 1.5,
             fontWeight: FontWeight.w800,

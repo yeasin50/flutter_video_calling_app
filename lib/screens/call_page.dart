@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -74,8 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     _localStream = await _getUserMedia();
 
-    RTCPeerConnection pc =
-        await createPeerConnection(config, offerSdpConstraints);
+    RTCPeerConnection pc = await createPeerConnection(config, offerSdpConstraints);
 
     pc.addStream(_localStream!);
 
@@ -84,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         print(json.encode({
           'candidate': e.candidate.toString(),
           'sdpMid': e.sdpMid.toString(),
-          'sdpMlineIndex': e.sdpMlineIndex,
+          'sdpMlineIndex': e.sdpMLineIndex,
         }));
       }
     };
@@ -127,8 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void switchCamera() async {
     if (_localStream != null) {
       bool value = await _localStream!.getVideoTracks()[0].switchCamera();
-      while (value == this.isFrontCamera)
-        value = await _localStream!.getVideoTracks()[0].switchCamera();
+      while (value == this.isFrontCamera) value = await _localStream!.getVideoTracks()[0].switchCamera();
       this.isFrontCamera = value;
     }
   }
@@ -194,10 +191,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Row(
               children: [
-                RaisedButton(
+                ElevatedButton(
                   onPressed: _createOFfer,
                   child: Text("Offer"),
-                  color: Colors.orange,
                 ),
                 SizedBox(
                   width: 10,
@@ -205,10 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text("1st click here")
               ],
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: _answer,
               child: Text("Answer"),
-              color: Colors.orange,
             ),
           ],
         ),
@@ -227,15 +222,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Row sdpCandidateButtons() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          RaisedButton(
+          TextButton(
             onPressed: _setRemodeDescription,
             child: Text("set Remote Desc"),
-            color: Colors.pink,
           ),
-          RaisedButton(
+          TextButton(
             onPressed: _setCandiate,
             child: Text("set Candidate"),
-            color: Colors.pink,
           ),
         ],
       );
@@ -248,10 +241,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Row(
               children: [
-                RaisedButton(
+                TextButton(
                   onPressed: _copyPasteSdp,
                   child: Text("Copy & paste"),
-                  color: Colors.orange,
                 ),
                 SizedBox(
                   width: 10,
@@ -269,8 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ///`Offer Text copy and hold on Copy & paste`
   void _createOFfer() async {
     Map<String, dynamic> cfMap = {'offerToReceiveVideo': 1};
-    RTCSessionDescription description =
-        await _peerConnection.createOffer(cfMap);
+    RTCSessionDescription description = await _peerConnection.createOffer(cfMap);
 
     var session = parse(description.sdp!);
     // log("oFFer>> " + json.encode(session));
@@ -286,8 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     String sdp = write(session, null);
 
-    RTCSessionDescription description =
-        new RTCSessionDescription(sdp, _offer ? 'answer' : 'offer');
+    RTCSessionDescription description = new RTCSessionDescription(sdp, _offer ? 'answer' : 'offer');
 
     print(description.toMap());
 
@@ -295,8 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _answer() async {
-    RTCSessionDescription description =
-        await _peerConnection.createAnswer({'offerToReceiveVideo': 1});
+    RTCSessionDescription description = await _peerConnection.createAnswer({'offerToReceiveVideo': 1});
 
     var session = parse(description.sdp!);
     print(json.encode(session));
@@ -309,8 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
     dynamic session = await jsonDecode("$jsonString");
     print(session['candidate']);
 
-    dynamic candidate = new RTCIceCandidate(
-        session['candidate'], session['sdpMid'], session['sdpMlineIndex']);
+    dynamic candidate = new RTCIceCandidate(session['candidate'], session['sdpMid'], session['sdpMlineIndex']);
 
     await _peerConnection.addCandidate(candidate);
   }

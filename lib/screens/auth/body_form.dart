@@ -13,8 +13,7 @@ class AuthForm extends StatefulWidget {
   _AuthFormState createState() => _AuthFormState();
 }
 
-class _AuthFormState extends State<AuthForm>
-    with SingleTickerProviderStateMixin {
+class _AuthFormState extends State<AuthForm> with SingleTickerProviderStateMixin {
   bool isLogin = true;
   bool _onAlreadyAccTapped = false;
   bool _passVisibility = true;
@@ -55,8 +54,7 @@ class _AuthFormState extends State<AuthForm>
       ///`must: animation duration < controller duration`
       Timer(
           const Duration(milliseconds: 200),
-          () => _animation.addListener(() =>
-              SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+          () => _animation.addListener(() => SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
                 if (_animation.isDismissed) setState(() => isLogin = true);
               })));
     }
@@ -70,8 +68,7 @@ class _AuthFormState extends State<AuthForm>
       // you'd often call a server or save the information in a database.
       _formKey.currentState!.save();
       print("mail: $_mail");
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Processing Data')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processing Data')));
       Navigator.pushReplacementNamed(context, ConversationListScreen.routeName);
     }
   }
@@ -123,15 +120,11 @@ class _AuthFormState extends State<AuthForm>
         onTapUp: (_) => setState(() => _onAlreadyAccTapped = false),
         onTap: _switchLogin,
         child: EasyRichText(
-          isLogin
-              ? "Don't have an Account? Sign up"
-              : "Already have an Account? Login",
+          isLogin ? "Don't have an Account? Sign up" : "Already have an Account? Login",
           defaultStyle: GoogleFonts.lato(
             textStyle: TextStyle(
               color: Colors.white.withOpacity(.8),
-              backgroundColor: _onAlreadyAccTapped
-                  ? Colors.white.withOpacity(.5)
-                  : Colors.transparent,
+              backgroundColor: _onAlreadyAccTapped ? Colors.white.withOpacity(.5) : Colors.transparent,
             ),
           ),
           patternList: [
@@ -417,7 +410,7 @@ class _AuthFormState extends State<AuthForm>
         isLogin ? "Login" : "Sign up",
         style: GoogleFonts.aladin(
             letterSpacing: 5,
-            fontSize: Theme.of(context).textTheme.headline3!.fontSize,
+            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
             fontWeight: FontWeight.w600,
             shadows: <Shadow>[
               Shadow(

@@ -6,8 +6,7 @@ import 'custom_logo.dart';
 class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Row(
@@ -59,7 +58,7 @@ class Header extends StatelessWidget {
         "Chats",
         textAlign: TextAlign.center,
         style: GoogleFonts.acme(
-          fontSize: Theme.of(context).textTheme.headline4!.fontSize,
+          fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           fontWeight: FontWeight.w700,
         ),
       ),

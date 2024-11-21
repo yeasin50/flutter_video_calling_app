@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:web_rtc/provider/call_duration.dart';
-import 'package:web_rtc/screens/conversationsScreen/chats_screen.dart';
 
+import 'provider/call_duration.dart';
 import 'provider/dummy_data.dart';
 import 'screens/auth/auth_screen.dart';
+import 'screens/call_page.dart';
 import 'screens/chat_screen/chatting_screen.dart';
-import 'screens/chat_screen/components/anim_tester.dart';
-import 'screens/onCall/body_on_video_call.dart';
-import 'screens/onCall/on_call_running.dart';
+import 'screens/conversationsScreen/chats_screen.dart';
 
-main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // await Permission.camera.request();
-  // await Permission.microphone.request();
+  await Permission.camera.request();
+  await Permission.microphone.request();
 
   runApp(MyApp());
 }
@@ -37,13 +36,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter WebRTC',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          backgroundColor: Colors.transparent,
         ),
-        home: AuthScreen(),
+        home: MyHomePage(),
         routes: routes,
       ),
     );
@@ -55,7 +53,6 @@ class MyApp extends StatelessWidget {
       AuthScreen.routeName: (_) => AuthScreen(),
       ConversationListScreen.routeName: (_) => ConversationListScreen(),
       ChattingScreen.routeName: (_) => ChattingScreen(),
-      CallingScreen.routeName: (_) => CallingScreen(),
     };
   }
 }

@@ -7,8 +7,7 @@ class RoundedButton extends StatelessWidget {
   final double? width;
   final Function? onPress;
 
-  const RoundedButton({Key? key, this.labelText, this.width, this.onPress})
-      : super(key: key);
+  const RoundedButton({Key? key, this.labelText, this.width, this.onPress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,8 @@ class RoundedButton extends StatelessWidget {
         child: Text(
           labelText!,
           style: GoogleFonts.lato(
-            fontSize: Theme.of(context).textTheme.headline6!.fontSize! - 4,
+            //who wrote it
+            fontSize: Theme.of(context).textTheme.titleMedium!.fontSize! - 4,
             color: kbgBLrimaryColor,
             fontWeight: FontWeight.w700,
           ),
