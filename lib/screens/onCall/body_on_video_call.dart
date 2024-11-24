@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:web_rtc/components/round_icon.dart';
 import 'package:web_rtc/screens/conversationsScreen/components/custom_logo.dart';
 
-import 'components_/action_buttons.dart';
+import 'widgets/action_buttons.dart';
 
 class VideoCallBody extends StatefulWidget {
   const VideoCallBody({
